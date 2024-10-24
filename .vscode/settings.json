@@ -1,0 +1,24 @@
+{
+    "files.associations": {
+        "menu.h": "c",
+        "utils.h": "c",
+        "complexo.h": "c",
+        "raiz.h": "c",
+        "hipotenusa.h": "c",
+        "prestacao.h": "c",
+        "compararstring.h": "c",
+        "string.h": "c",
+        "stdio.h": "c",
+        "cmath": "cpp",
+        "complex": "cpp",
+        "string_view": "c",
+        "ostream": "c",
+        "windows.h": "c",
+        "array": "c",
+        "format": "c",
+        "initializer_list": "c",
+        "span": "c",
+        "string": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}
