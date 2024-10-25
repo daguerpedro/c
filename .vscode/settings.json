@@ -18,7 +18,17 @@
         "format": "c",
         "initializer_list": "c",
         "span": "c",
-        "string": "c"
+        "string": "c",
+        "ctype.h": "c",
+        "alunos.h": "c",
+        "imc.h": "c",
+        "diasmes.h": "c",
+        "treinamento.h": "c",
+        "conversaotempo.h": "c",
+        "areacilindro.h": "c",
+        "minusculomaiuculo.h": "c",
+        "principal.h": "c",
+        "complexo2.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

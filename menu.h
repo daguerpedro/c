@@ -5,7 +5,7 @@
 typedef struct
 {
     char *titulo;
-    void (*executor)();
+    void (*executor)(void* m_origin);
 } Pagina;
 
 typedef struct
@@ -15,14 +15,16 @@ typedef struct
 
     unsigned short int u_paginas;
     unsigned short int u_sizepaginas;
+    
+    bool rodar;
 } Menu;
 
 void __executar(Menu *menu, unsigned int pagina);
 
-void criarPagina(Menu *menu, char* titulo, void (*executor)());
-void mostrarMenu(Menu *menu, boolean imprimirTitulo);
-Menu criarMenu(char *title);
+void criarPagina(Menu *menu, char *titulo, void (*executor)(void* m_origin));
+void mostrarMenu(Menu *menu, bool imprimirTitulo);
+void limparMenu(Menu* m);
 
-extern boolean rodar;
+Menu criarMenu(char *title);
 
 #endif

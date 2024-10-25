@@ -1,15 +1,13 @@
-#include "utils.h"
-#include "menu.h"
+#include "./utils.h"
+#include "./menu.h"
 
-boolean rodar = 1;
-
-void criarPagina(Menu *menu, char *titulo, void (*executor)())
+void criarPagina(Menu *menu, char *titulo, void (*executor)(void*m_origin))
 {
     Pagina p = {titulo, executor};
     menu->paginas[menu->u_paginas] = p;
     menu->u_paginas++;
 
-    if(menu->u_paginas >= menu->u_sizepaginas)
+    if (menu->u_paginas >= menu->u_sizepaginas)
     {
         menu->u_sizepaginas *= 2;
 
@@ -18,12 +16,12 @@ void criarPagina(Menu *menu, char *titulo, void (*executor)())
         if (temp == NULL)
         {
             printf("Erro de realocação\n");
+            free(menu->paginas);
             abort();
         }
 
         menu->paginas = temp;
     }
-
 }
 
 void __executar(Menu *menu, unsigned int pagina)
@@ -32,12 +30,18 @@ void __executar(Menu *menu, unsigned int pagina)
         if (pagina < menu->u_paginas)
             if (&menu->paginas[pagina])
                 if (*menu->paginas[pagina].executor)
-                    (*menu->paginas[pagina].executor)();
+                    (*menu->paginas[pagina].executor)(menu);
 }
 
-void mostrarMenu(Menu *menu, boolean imprimirTitulo)
+void limparMenu(Menu* m)
 {
-    while (rodar == 1)
+    free(m->paginas);
+}
+
+void mostrarMenu(Menu *menu, bool imprimirTitulo)
+{
+    menu->rodar = true;
+    while (menu->rodar == 1)
     {
         fflush(stdout);
 
@@ -46,6 +50,8 @@ void mostrarMenu(Menu *menu, boolean imprimirTitulo)
 
         if (imprimirTitulo)
             printf("%s\n\n", menu->titulo);
+
+        SetConsoleTitle(menu->titulo);
 
         for (int i = 0; i < menu->u_paginas; i++)
         {
@@ -77,14 +83,15 @@ void mostrarMenu(Menu *menu, boolean imprimirTitulo)
         }
 
         printf("\n");
+
+        SetConsoleTitle(menu->paginas[option].titulo);
         __executar(menu, option);
     }
-    free(menu->paginas);
 }
 
 Menu criarMenu(char *title)
 {
-    // Inicializa o menu, alocando uma "lista" com memória suficiente para alocar apenas 1 página.
-    Menu m = {malloc(10 * sizeof(Pagina)), title, 0, 10};
+    // Inicializa o menu, alocando uma "lista" com memória suficiente para alocar 10 páginas.
+    Menu m = {malloc(10 * sizeof(Pagina)), title, 0, 10, true};
     return m;
 }
