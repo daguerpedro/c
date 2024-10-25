@@ -2,8 +2,6 @@
 #ifndef MENU_H
 #define MENU_H
 
-char *categorias;
-
 typedef struct
 {
     char *titulo;
@@ -16,6 +14,7 @@ typedef struct
     char *titulo;
 
     unsigned short int u_paginas;
+    unsigned short int u_sizepaginas;
 } Menu;
 
 void __executar(Menu *menu, unsigned int pagina);
@@ -23,5 +22,7 @@ void __executar(Menu *menu, unsigned int pagina);
 void criarPagina(Menu *menu, char* titulo, void (*executor)());
 void mostrarMenu(Menu *menu, boolean imprimirTitulo);
 Menu criarMenu(char *title);
+
+extern boolean rodar;
 
 #endif

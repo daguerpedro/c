@@ -17,8 +17,6 @@
 #include "outros/diasmes.h"
 #include "outros/imc.h"
 
-boolean rodar = 1;
-
 void sair()
 {
     rodar = 0;
@@ -57,11 +55,6 @@ int main()
     criarPagina(&menu, "Comparar strings", *compararStrings);
     
     criarPagina(&menu, "Limpar tela", *cls);
-
-    while (rodar == 1)
-    {
-        mostrarMenu(&menu, 1);
-    }
-
-    free(menu.paginas);
+   
+    mostrarMenu(&menu, 1);
 }
