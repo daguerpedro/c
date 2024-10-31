@@ -17,13 +17,13 @@
 #include "outros/diasmes.h"
 #include "outros/imc.h"
 #include "outros/alunos.h"
+#include "outros/imparpar.h"
+#include "outros/acumulador.h"
+#include "outros/resistores.h"
 
 Menu m_principal, m_calculos, m_conversoes, m_outros;
 
-void cls()
-{
-    system("cls");
-}
+void cls() { system("cls"); }
 
 void sair(void *m_origin)
 {
@@ -45,6 +45,7 @@ void iniciarCalculos()
     m_calculos = criarMenu("Cálculo");
     criarPagina(&m_calculos, "Voltar", *sair);
     criarPagina(&m_calculos, "Calcular resistor", &resistor);
+    criarPagina(&m_calculos, "Calcular resistores paralelo", &resistores);
     criarPagina(&m_calculos, "Formula de bhaskara", &raiz);
     criarPagina(&m_calculos, "Formula de bhaskara complexos", &bhaskara);
     criarPagina(&m_calculos, "Retangular para polar", &complexo);
@@ -58,6 +59,8 @@ void iniciarOutros()
 {
     m_outros = criarMenu("Outros");
     criarPagina(&m_outros, "Voltar", *sair);
+    criarPagina(&m_outros, "Impar/Par", *imparpar);
+    criarPagina(&m_outros, "Acumulador", *acumulador);
     criarPagina(&m_outros, "Peso ideal", *imc);
     criarPagina(&m_outros, "Dias do mês", *diasmes);
     criarPagina(&m_outros, "Tempo de treinamento", *treinamento);
@@ -86,11 +89,9 @@ void iniciarMPrincipal()
 {
     m_principal = criarMenu("Menu principal");
     criarPagina(&m_principal, "Fechar", *sair);
-
     criarPagina(&m_principal, "Cálculos", *irCalculos);
     criarPagina(&m_principal, "Conversões", *irConversoes);
     criarPagina(&m_principal, "Outros", *irOutros);
-
     criarPagina(&m_principal, "Limpar tela", *cls);
 
     iniciarOutros();

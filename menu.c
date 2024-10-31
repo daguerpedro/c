@@ -49,7 +49,7 @@ void mostrarMenu(Menu *menu, bool imprimirTitulo)
             return;
 
         if (imprimirTitulo)
-            printf("%s\n\n", menu->titulo);
+            printf("> %s\n\n", menu->titulo);
 
         SetConsoleTitle(menu->titulo);
 
